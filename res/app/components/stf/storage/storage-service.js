@@ -16,7 +16,8 @@ module.exports = function StorageServiceFactory($http, $upload) {
   service.storeFile = function(type, files, options) {
     var resolver = Promise.defer()
     var input = options.filter ? files.filter(options.filter) : files
-
+    if(input.indexOf('.ipa')!=-1)
+      type='ipa'
     if (input.length) {
       $upload.upload({
           url: '/s/upload/' + type

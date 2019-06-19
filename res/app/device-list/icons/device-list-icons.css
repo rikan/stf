@@ -6,8 +6,8 @@ ul.devices-icon-view {
 }
 
 ul.devices-icon-view li {
-  width: 126px;
-  height: 170px;
+  width: 250px;
+  /*height: 200px;*/
   background: white;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -86,3 +86,101 @@ ul.devices-icon-view .device-name.state-available {
   white-space: normal;
   max-height: 45px;
 }
+
+.device-item-huya{
+  margin-left: 20px;
+  margin-bottom: 20px;
+  display: block;
+  width: 250px;
+  height: fit-content;
+  font-weight: 500;
+  /*cursor: pointer;*/
+  border: 1px solid #e1e1e1;
+  position: relative;
+}
+
+.device-top-huya{
+  overflow: hidden;
+  border-bottom: 1px solid #eeeeee;
+  padding: 8px 10px;
+}
+
+.device-top-huya .device-status-huya{
+  margin-top: 2px;
+  float: left;
+}
+
+.pull-right-huya{
+  width: fit-content;
+  height: 26px;
+  text-align: center;
+  float: right ;
+  background: #1081DE;
+  font-size: 12px;
+  color: #fff;
+  border: 1px solid;
+  border-radius: 2px;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /*font-weight: normal;*/
+}
+
+.device-name-huya{
+  text-align: left;
+  margin: 14px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.device-item-huya dl{
+  padding-bottom: 20px
+}
+
+dl{
+  margin-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: Serif;
+  font-size: 15px;
+}
+
+dt{
+  float: left;
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+dd{
+  height: fit-content;
+  margin-left: 100px;
+}
+
+.device-info-huya{
+  height: 120px;
+
+}
+
+p{
+  font-size: 12px;
+  line-height: 22px;
+  color: #666;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: left;
+}
+
+.filter-out{
+  display: none;
+}
+
+.huya_ico {
+  width: 61px;
+  height: 120px;
+}
+

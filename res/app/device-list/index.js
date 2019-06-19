@@ -18,8 +18,9 @@ module.exports = angular.module('device-list', [
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/devices', {
-        template: require('./device-list.pug'),
-        controller: 'DeviceListCtrl'
+        // template: require('./device-list.pug'),
+        controller: 'DeviceListCtrl',
+        template: require('./devices.pug')
       })
   }])
   .run(function(editableOptions) {

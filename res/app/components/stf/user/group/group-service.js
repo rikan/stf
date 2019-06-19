@@ -50,7 +50,7 @@ module.exports = function GroupServiceFactory(
         return result.device
       })
       .catch(TransactionError, function() {
-        throw new Error('Device refused to join the group')
+        // throw new Error('Device refused to join the group')
       })
   }
 

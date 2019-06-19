@@ -1,4 +1,4 @@
-module.exports = function ScreenshotsCtrl($scope) {
+module.exports = function ScreenshotsCtrl($scope, $log) {
   $scope.screenshots = []
   $scope.screenShotSize = 400
 
@@ -16,8 +16,10 @@ module.exports = function ScreenshotsCtrl($scope) {
 
   $scope.takeScreenShot = function() {
     $scope.control.screenshot().then(function(result) {
+      // $log.log('screenshoot result: ' + angular.toJson(result))
       $scope.$apply(function() {
         $scope.screenshots.unshift(result)
+        // $log.log('screenshots: ' + angular.toJson($scope.screenshots))
       })
     })
   }

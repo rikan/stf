@@ -2,7 +2,7 @@ var oboe = require('oboe')
 var _ = require('lodash')
 var EventEmitter = require('eventemitter3')
 
-module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceService) {
+module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceService, $log) {
   var deviceService = {}
 
   function Tracker($scope, options) {
@@ -18,6 +18,7 @@ module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceServi
     function digest() {
       // Not great. Consider something else
       if (!$scope.$$phase) {
+        //执行digest循环，触发所有的watchers，更新数据
         $scope.$digest()
       }
 
@@ -25,6 +26,7 @@ module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceServi
       digestTimer = null
     }
 
+    //刷新网页
     function notify(event) {
       if (!options.digest) {
         return
@@ -33,6 +35,7 @@ module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceServi
       if (event.important) {
         // Handle important updates immediately.
         //digest()
+        //刷新网页，并在刷新网页前调用diges函数
         window.requestAnimationFrame(digest)
       }
       else {
@@ -52,6 +55,7 @@ module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceServi
       }
     }
 
+    //同步设备状态
     function sync(data) {
       // usable IF device is physically present AND device is online AND
       // preparations are ready AND the device has no owner or we are the
@@ -63,7 +67,7 @@ module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceServi
       if (!data.usable || !data.owner) {
         data.using = false
       }
-
+      //更新设备状态
       EnhanceDeviceService.enhance(data)
     }
 
@@ -157,6 +161,7 @@ module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceServi
 
   Tracker.prototype = new EventEmitter()
 
+  //更新所有设备
   deviceService.trackAll = function($scope) {
     var tracker = new Tracker($scope, {
       filter: function() {
@@ -165,14 +170,17 @@ module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceServi
     , digest: false
     })
 
+    //获取所有设备
     oboe('/api/v1/devices')
       .node('devices[*]', function(device) {
+        // $log.log('In oboe node callback :' + device)
         tracker.add(device)
       })
-
+    // $log.log('tracker: ' + angular.toJson(tracker))
     return tracker
   }
 
+  //更新群组设备
   deviceService.trackGroup = function($scope) {
     var tracker = new Tracker($scope, {
       filter: function(device) {

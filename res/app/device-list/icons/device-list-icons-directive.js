@@ -6,94 +6,222 @@ module.exports = function DeviceListIconsDirective(
 , DeviceColumnService
 , GroupService
 , StandaloneService
+, $log
+, $rootScope
 ) {
   function DeviceItem() {
+    //返回一个Object
     return {
-      build: function() {
+      // build: function() {
+      //   var li = document.createElement('li')
+      //   li.className = 'cursor-select pointer thumbnail'
+      //
+      //   // the whole li is a link
+      //   var a = document.createElement('a')
+      //   li.appendChild(a)
+      //
+      //   // .device-photo-small
+      //   var photo = document.createElement('div')
+      //   photo.className = 'device-photo-small'
+      //   var img = document.createElement('img')
+      //   photo.appendChild(img)
+      //   a.appendChild(photo)
+      //
+      //   // .device-name
+      //   var name = document.createElement('div')
+      //   name.className = 'device-name'
+      //   name.appendChild(document.createTextNode(''))
+      //   a.appendChild(name)
+      //
+      //   // button
+      //   var button = document.createElement('button')
+      //   button.appendChild(document.createTextNode(''))
+      //   a.appendChild(button)
+      //
+      //   return li
+      // }
+    build: function() {
         var li = document.createElement('li')
-        li.className = 'cursor-select pointer thumbnail'
+        li.className = 'device-item-huya thumbnail'
 
-        // the whole li is a link
+        //device-status
+        var top = document.createElement('div')
+        top.className = 'device-top-huya'
+        li.appendChild(top)
+
+        var status = document.createElement('div')
+        status.className = 'device-status-huya'
+        status.appendChild(document.createTextNode('空闲'))
+        top.appendChild(status)
+
         var a = document.createElement('a')
-        li.appendChild(a)
+        var remind = document.createElement('button')
+        remind.appendChild(document.createTextNode('立即使用'))
+        remind.className = 'pull-right-huya'
+        // remind.innerHTML = '立即使用'
+        a.appendChild(remind)
+        top.appendChild(a)
 
-        // .device-photo-small
-        var photo = document.createElement('div')
-        photo.className = 'device-photo-small'
-        var img = document.createElement('img')
-        photo.appendChild(img)
-        a.appendChild(photo)
-
-        // .device-name
+        //device-name
         var name = document.createElement('div')
-        name.className = 'device-name'
+        name.className = 'device-name-huya'
         name.appendChild(document.createTextNode(''))
-        a.appendChild(name)
+        li.appendChild(name)
 
-        // button
-        var button = document.createElement('button')
-        button.appendChild(document.createTextNode(''))
-        a.appendChild(button)
+        //.device-instruction
+        var dl = document.createElement('dl')
+        dl.className = 'device-info'
+        li.appendChild(dl)
 
+        var dt = document.createElement('dt')
+        var photo = document.createElement('div')
+        photo.className = 'device-photo-small-huya'
+        var img = document.createElement('img')
+        img.className = 'huya_ico'
+        photo.appendChild(img)
+        dt.appendChild(photo)
+        dl.appendChild(dt)
+
+        var dd = document.createElement('dd')
+        var info = document.createElement('div')
+        info.className = 'device-info-huya'
+        dd.appendChild(info)
+        dl.appendChild(dd)
+
+        var manufacturer = document.createElement('p')
+        manufacturer.appendChild(document.createTextNode('品牌: Unknown'))
+        var os = document.createElement('p')
+        os.appendChild(document.createTextNode('系统: Unknown'))
+        var screen = document.createElement('p')
+        screen.appendChild(document.createTextNode('分辨率: Unknown'))
+        var provider = document.createElement('p')
+        provider.appendChild(document.createTextNode('位置： 无'))
+        info.appendChild(manufacturer)
+        info.appendChild(os)
+        info.appendChild(screen)
+        info.appendChild(provider)
         return li
       }
+
     , update: function(li, device) {
-        var a = li.firstChild
-        var img = a.firstChild.firstChild
-        var name = a.firstChild.nextSibling
-        var nt = name.firstChild
-        var button = name.nextSibling
-        var at = button.firstChild
-        var classes = 'btn btn-xs device-status '
+        // $log.log('device: ' + angular.toJson(device))
 
-        // .device-photo-small
-        if (img.getAttribute('src') !== device.enhancedImage120) {
-          img.setAttribute('src', device.enhancedImage120)
+        var top = li.firstChild
+        var status = top.firstChild.firstChild
+        status.nodeValue = $filter('statusHuya')(device.state)
+
+        if(device.owner && device.state !== 'automation' && device.present === true) {
+         status.nodeValue = status.nodeValue + ' by ' + device.owner.name
         }
 
-        // .device-name
-        nt.nodeValue = device.enhancedName
+        var remind = top.firstChild.nextSibling.firstChild.firstChild
+        remind.nodeValue = $filter('translate')(device.enhancedStateAction)
 
-        // button
-        at.nodeValue = $filter('translate')(device.enhancedStateAction)
-
-        function getStateClasses(state) {
-          var stateClasses = {
-            using: 'state-using btn-primary',
-            busy: 'state-busy btn-warning',
-            available: 'state-available btn-primary-outline',
-            ready: 'state-ready btn-primary-outline',
-            present: 'state-present btn-primary-outline',
-            preparing: 'state-preparing btn-primary-outline btn-success-outline',
-            unauthorized: 'state-unauthorized btn-danger-outline',
-            offline: 'state-offline btn-warning-outline',
-            automation: 'state-automation btn-info'
-          }[state]
-          if (typeof stateClasses === 'undefined') {
-            stateClasses = 'btn-default-outline'
-          }
-          return stateClasses
-        }
-
-        button.className = classes + getStateClasses(device.state)
-
-        if (device.state === 'available') {
-          name.classList.add('state-available')
-        } else {
-          name.classList.remove('state-available')
-        }
-
+        var a = top.firstChild.nextSibling
+        //判断设备是否可用
         if (device.usable) {
           a.href = '#!/control/' + device.serial
-          li.classList.remove('device-is-busy')
+          a.firstChild.classList.remove('device-is-busy')
         }
         else {
           a.removeAttribute('href')
-          li.classList.add('device-is-busy')
+          a.firstChild.classList.add('device-is-busy')
+        }
+
+        var name = top.nextSibling
+        var nt = name.firstChild
+        nt.nodeValue = device.enhancedName
+
+        var dl = name.nextSibling
+
+        var img = dl.firstChild.firstChild.firstChild
+        img.setAttribute('src', device.enhancedImg)
+
+        var dd = dl.firstChild.nextSibling
+        var info = dd.firstChild
+
+        var manufactor = info.firstChild
+        if(device.manufacturer) {
+          manufactor.firstChild.nodeValue = '品牌： ' + device.manufacturer
+        }
+
+        var os = manufactor.nextSibling
+        if(device.version && device.platform) {
+          os.firstChild.nodeValue = '系统： ' + device.platform + ' ' + device.version
+        }
+
+
+        var screen = os.nextSibling
+        if(device.display) {
+          screen.firstChild.nodeValue = '分辨率：' + device.display.width + '*' + device.display.height
+        }
+
+        if(device.provider) {
+          var provider = screen.nextSibling
+          provider.firstChild.nodeValue = '位置：' + device.provider.name
         }
 
         return li
+
       }
+
+    // , update: function(li, device) {
+    //     var a = li.firstChild
+    //     var img = a.firstChild.firstChild
+    //     var name = a.firstChild.nextSibling
+    //     var nt = name.firstChild
+    //     var button = name.nextSibling
+    //     var at = button.firstChild
+    //     var classes = 'btn btn-xs device-status '
+    //
+    //     // .device-photo-small
+    //     if (img.getAttribute('src') !== device.enhancedImage120) {
+    //       img.setAttribute('src', device.enhancedImage120)
+    //     }
+    //
+    //     // .device-name
+    //     nt.nodeValue = device.enhancedName
+    //
+    //     // button
+    //     at.nodeValue = $filter('translate')(device.enhancedStateAction)
+    //
+    //     function getStateClasses(state) {
+    //       var stateClasses = {
+    //         using: 'state-using btn-primary',
+    //         busy: 'state-busy btn-warning',
+    //         available: 'state-available btn-primary-outline',
+    //         ready: 'state-ready btn-primary-outline',
+    //         present: 'state-present btn-primary-outline',
+    //         preparing: 'state-preparing btn-primary-outline btn-success-outline',
+    //         unauthorized: 'state-unauthorized btn-danger-outline',
+    //         offline: 'state-offline btn-warning-outline',
+    //         automation: 'state-automation btn-info'
+    //       }[state]
+    //       if (typeof stateClasses === 'undefined') {
+    //         stateClasses = 'btn-default-outline'
+    //       }
+    //       return stateClasses
+    //     }
+    //
+    //     button.className = classes + getStateClasses(device.state)
+    //
+    //     if (device.state === 'available') {
+    //       name.classList.add('state-available')
+    //     } else {
+    //       name.classList.remove('state-available')
+    //     }
+    //
+    //     if (device.usable) {
+    //       a.href = '#!/control/' + device.serial
+    //       li.classList.remove('device-is-busy')
+    //     }
+    //     else {
+    //       a.removeAttribute('href')
+    //       li.classList.add('device-is-busy')
+    //     }
+    //
+    //     return li
+    //   }
     }
   }
 
@@ -108,12 +236,15 @@ module.exports = function DeviceListIconsDirective(
     }
   , link: function(scope, element) {
       var tracker = scope.tracker()
+      // $log.log('tracker.devices: ' + tracker.devices)
+      $log.log(element)
       var activeColumns = []
       var activeSorting = []
       var activeFilters = []
       var list = element.find('ul')[0]
       var items = list.childNodes
       var prefix = 'd' + Math.floor(Math.random() * 1000000) + '-'
+      // var prefix = ''
       var mapping = Object.create(null)
       var builder = DeviceItem()
 
@@ -135,20 +266,19 @@ module.exports = function DeviceListIconsDirective(
 
         var id
 
-        if (e.target.classList.contains('thumbnail')) {
-          id = e.target.id
-        } else if (e.target.classList.contains('device-status') ||
-          e.target.classList.contains('device-photo-small') ||
-          e.target.classList.contains('device-name')) {
-          id = e.target.parentNode.parentNode.id
-        } else if (e.target.parentNode.classList.contains('device-photo-small')) {
+        //点击'使用'或者'停止使用'按钮
+        if(e.target.classList.contains('pull-right-huya')) {
           id = e.target.parentNode.parentNode.parentNode.id
         }
 
+        $log.log('id : ' + id)
+
         if (id) {
           var device = mapping[id]
+          // $log.log('mapping device : ' + angular.toJson(device))
 
           if (e.altKey && device.state === 'available') {
+            $log.log('in inviteDevice')
             inviteDevice(device)
             e.preventDefault()
           }
@@ -163,6 +293,18 @@ module.exports = function DeviceListIconsDirective(
             e.preventDefault()
           }
         }
+      })
+
+      $rootScope.$on('$routeChangeSuccess', function(evt, next, previous) {
+        if(previous.params.serial) {
+          var id = prefix + previous.params.serial
+          if(mapping[id]) {
+            kickDevice(mapping[id])
+          }
+
+        }
+
+
       })
 
       // Import column definitions
@@ -262,6 +404,7 @@ module.exports = function DeviceListIconsDirective(
 
       // Updates filters on visible items.
       function updateFilters(filters) {
+        // $log.log('updateFilters' + angular.toJson(filters))
         activeFilters = filters
         return filterAll()
       }
@@ -275,10 +418,14 @@ module.exports = function DeviceListIconsDirective(
 
       // Filters an item, perhaps removing it from view.
       function filterItem(item, device) {
+        // $log.log(angular.toJson(device))
+        // $log.log(match(device))
+        // $log.log(item)
         if (match(device)) {
           item.classList.remove('filter-out')
         }
         else {
+
           item.classList.add('filter-out')
         }
       }
@@ -386,6 +533,7 @@ module.exports = function DeviceListIconsDirective(
       // the right format already (built with createItem() and patched with
       // patchItem() if necessary).
       function updateItem(item, device) {
+        $log.log('In updateItem function')
         var id = calculateId(device)
 
         item.id = id
@@ -500,6 +648,7 @@ module.exports = function DeviceListIconsDirective(
 
       // Triggers when the tracker notices that a device changed.
       function changeListener(device) {
+        // $log.log('In changeListener : ' + angular.toJson(device))
         var id = calculateId(device)
         var item = list.children[id]
 

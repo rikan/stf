@@ -31,6 +31,17 @@ module.exports = angular.module('stf.device-status', [])
       }[text] || gettext('Unknown')
     }
   })
+  .filter('statusHuya', function() {
+    return function(text) {
+      return {
+        using: '使用中',
+        available: '空闲中',
+        busy: '占用中',
+        preparing: '准备中',
+        automation: '自动化中'
+      }[text] || '离线中'
+    }
+  })
  .filter('likelyLeaveReason', function(gettext) {
     return function(text) {
       return {

@@ -3,8 +3,15 @@ module.exports = function RemoteDebugCtrl($scope, $timeout, gettext) {
     if ($scope.control) {
       $scope.control.startRemoteConnect().then(function(result) {
         var url = result.lastData
+        var command = 'adb connect ' + url
+        if(result.device.platform=='iOS'){
+          command = '1.安装socat：brew install socat\n'
+          command += '2.mv /var/run/usbmuxd /var/run/usbmuxx\n'
+          command += '3.socat UNIX-LISTEN:/var/run/usbmuxd,mode=777,reuseaddr,fork TCP:'+url+'\n'
+          command += '最后，使用完成后需要把usbmuxd恢复：mv /var/run/usbmuxx /var/run/usbmuxd'
+        }
         $scope.$apply(function() {
-          $scope.debugCommand = 'adb connect ' + url
+          $scope.debugCommand = command
         })
       })
 

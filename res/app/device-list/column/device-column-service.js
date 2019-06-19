@@ -179,6 +179,12 @@ module.exports = function DeviceColumnService($filter, gettext) {
         return device.manufacturer || ''
       }
     })
+  , marketName: TextCell({
+      title: gettext('Market name')
+      , value: function(device) {
+        return device.marketName || ''
+      }
+    })
   , sdk: NumberCell({
       title: gettext('SDK')
     , defaultOrder: 'desc'
@@ -297,6 +303,18 @@ module.exports = function DeviceColumnService($filter, gettext) {
         return device.owner ? device.enhancedUserProfileUrl : ''
       }
     })
+  , platform: HuyaPlatFormCell({
+      title: gettext('Platform')
+    , value: function(device) {
+        return device.platform || ''
+      }
+    })
+  , ios_os: HuyaIosOsCell({
+      title: gettext('ios_os'),
+      value: function(device) {
+        return device.version || ''
+      }
+    })
   }
 }
 
@@ -330,6 +348,65 @@ function compareRespectCase(a, b) {
   }
 }
 
+function HuyaIosOsCell(options) {
+  return _.defaults(options, {
+    filter: function(device, filter) {
+    if(device.platform && device.platform.toLowerCase() !== 'ios') {
+      return false
+    }
+    var va = (device.version || '0').split('.')
+    var vb = (filter.query || '0').split('.')
+    var la = va.length
+    var lb = vb.length
+    var op = filterOps[filter.op || '=']
+
+    // We have a single value and no operator or field. It matches
+    // too easily, let's wait for a dot (e.g. '5.'). An example of a
+    // bad match would be an unquoted query for 'Nexus 5', which targets
+    // a very specific device but may easily match every Nexus device
+    // as the two terms are handled separately.
+    if (filter.op === null && filter.field === null && lb === 1) {
+      return false
+    }
+
+    if (vb[lb - 1] === '') {
+      // This means that the query is not complete yet, and we're
+      // looking at something like "4.", which means that the last part
+      // should be ignored.
+      vb.pop()
+      lb -= 1
+    }
+
+    for (var i = 0, l = Math.min(la, lb); i < l; ++i) {
+      var a = parseInt(va[i], 10)
+      var b = parseInt(vb[i], 10)
+
+      // One of the values might be non-numeric, e.g. 'M'. In that case
+      // filter by string value instead.
+      if (isNaN(a) || isNaN(b)) {
+        if (!op(va[i], vb[i])) {
+          return false
+        }
+      }
+      else {
+        if (!op(a, b)) {
+          return false
+        }
+      }
+    }
+
+    return true
+  }
+  })
+}
+
+function HuyaPlatFormCell(optons) {
+  return _.defaults(optons, {
+    filter: function(item, filter) {
+      return filterIgnoreCase(optons.value(item), filter.query)
+    }
+  })
+}
 
 function TextCell(options) {
   return _.defaults(options, {
@@ -651,7 +728,12 @@ function DeviceStatusCell(options) {
       }
     })()
   , filter: function(device, filter) {
-      return device.state === filter.query
+      if(filter.query === 'available') {
+        return device.state === filter.query || device.state === 'using'
+      } else if(filter.query === 'unavailable') {
+        // return device.state === 'absent' || device.state === 'ready' || device.state === 'busy'
+        return device.state !== 'available' && device.state !== 'using'
+      }
     }
   })
 }

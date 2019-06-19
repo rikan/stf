@@ -1,4 +1,4 @@
-# 
+#
 # Translators:
 # Jon Liang <jonqchk@gmail.com>, 2016
 # Peng Wang <buaawp@gmail.com>, 2016

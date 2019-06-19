@@ -1,5 +1,5 @@
 module.exports =
-  function ControlPanesController($scope, $http, gettext, $routeParams,
+  function ControlPanesController($scope, $http, $log, gettext, $routeParams,
     $timeout, $location, DeviceService, GroupService, ControlService,
     StorageService, FatalMessageService, SettingsService) {
 
@@ -33,6 +33,12 @@ module.exports =
         icon: 'fa-info color-orange',
         templateUrl: 'control-panes/info/info.pug',
         filters: ['native', 'web']
+      },
+      {
+        title: gettext('Inspector'),
+        icon: 'fa-info color-blue',
+        templateUrl: 'control-panes/inspect/inspect.pug',
+        filters: ['native', 'web']
       }
     ]
 
@@ -52,7 +58,8 @@ module.exports =
         templateUrl: 'control-panes/logs/logs.pug',
         filters: ['native', 'web']
       }
-    ].concat(angular.copy(sharedTabs))
+     ]
+    // ].concat(angular.copy(sharedTabs))
 
     $scope.device = null
     $scope.control = null
@@ -66,6 +73,36 @@ module.exports =
         .then(function(device) {
           $scope.device = device
           $scope.control = ControlService.create(device, device.channel)
+          // $log.log('In control-panes-controll: ' + JSON.stringify(device))
+          // $log.log('platform: ' + $scope.device.platform)
+          if($scope.device.platform.toLowerCase() === 'ios') {
+            $scope.topTabs = [
+              {
+                title: gettext('Dashboard'),
+                icon: 'fa-dashboard fa-fw color-pink',
+                templateUrl: 'control-panes/dashboard/dashboard.pug',
+                filters: ['native', 'web']
+              },
+              {
+                title: gettext('Screenshots'),
+                icon: 'fa-camera color-skyblue',
+                templateUrl: 'control-panes/screenshots/screenshots.pug',
+                filters: ['native', 'web']
+              },
+              {
+                title: gettext('Info'),
+                icon: 'fa-info color-orange',
+                templateUrl: 'control-panes/info/info.pug',
+                filters: ['native', 'web']
+              },
+              {
+                title: gettext('Inspector'),
+                icon: 'fa-info color-blue',
+                templateUrl: 'control-panes/inspect/inspect.pug',
+                filters: ['native', 'web']
+              }
+            ]
+          }
 
           // TODO: Change title, flickers too much on Chrome
           // $rootScope.pageTitle = device.name
@@ -82,6 +119,7 @@ module.exports =
     }
 
     getDevice($routeParams.serial)
+
 
     $scope.$watch('device.state', function(newValue, oldValue) {
       if (newValue !== oldValue) {

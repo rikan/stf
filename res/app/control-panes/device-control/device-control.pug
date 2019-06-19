@@ -20,6 +20,12 @@
             button(type='button', ng-click='kickDevice(device); $event.stopPropagation()', uib-tooltip='{{"Stop Using"|translate}}', tooltip-placement='bottom').btn.btn-sm.btn-danger-outline
               i.fa.fa-times
 
+          .screen-quality
+            p 画质：
+            select(ng-model='quality', ng-change="test()")
+              option(value='60') 高
+              option(value='30') 中
+              option(value='15') 低
           .device-name-container.pull-left(uib-dropdown)
             a.stf-vnc-device-name.pointer.unselectable(uib-dropdown-toggle)
               p
@@ -44,7 +50,7 @@
         div(ng-controller='DeviceScreenCtrl', ng-if='device').as-cell.fill-height
           div(ng-file-drop='installFile($files)', ng-file-drag-over-class='dragover').fill-height
             device-context-menu(device='device', control='control')
-              device-screen(device='device', control='control')
+              device-screen(device='device', control='control', quality='rate')
 
       .stf-vnc-bottom.as-row(ng-hide='$root.standalone')
         .controls.as-cell

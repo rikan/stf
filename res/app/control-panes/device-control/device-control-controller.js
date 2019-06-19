@@ -1,6 +1,6 @@
 var _ = require('lodash')
 
-module.exports = function DeviceControlCtrl($scope, DeviceService, GroupService,
+module.exports = function DeviceControlCtrl($scope, $log, DeviceService, GroupService,
   $location, $timeout, $window, $rootScope) {
 
   $scope.showScreen = true
@@ -131,6 +131,13 @@ module.exports = function DeviceControlCtrl($scope, DeviceService, GroupService,
     if ($rootScope.standalone) {
       $window.resizeTo($window.outerHeight, $window.outerWidth)
     }
+  }
+
+  $scope.quality = '60'
+  $scope.rate = $scope.quality
+  $scope.test = function() {
+    // $log.log('调整画质为：' + $scope.quality)
+    $scope.rate = $scope.quality
   }
 
 }

@@ -59,6 +59,7 @@ enum MessageType {
   RotationEvent              = 48;
   StoreOpenMessage           = 49;
   ScreenCaptureMessage       = 50;
+  ScreenDumpMessage          = 51;
   DeviceHeartbeatMessage     = 73;
   RebootMessage              = 52;
   ConnectStartMessage        = 53;
@@ -230,6 +231,7 @@ message DeviceIdentityMessage {
   optional string product = 12;
   optional string cpuPlatform = 13;
   optional string openGLESVersion = 14;
+  optional string marketName = 15;
 }
 
 message DeviceProperty {
@@ -478,6 +480,9 @@ message StoreOpenMessage {
 }
 
 message ScreenCaptureMessage {
+}
+
+message ScreenDumpMessage {
 }
 
 message ConnectStartMessage {
