@@ -1,0 +1,24 @@
+1.环境准备
+  安装libimobiledevice等依赖工具，如果已经安装过，可能需要升级，先卸载，再安装最新版本
+    brew uninstall --ignore-dependencies libimobiledevice
+    brew uninstall --ignore-dependencies usbmuxd
+    brew install --HEAD usbmuxd
+    brew unlink usbmuxd
+    brew link usbmuxd
+    brew install --HEAD libimobiledevice
+    brew install --HEAD libideviceinstaller
+    brew install carthage
+
+2.安装stf依赖：brew install graphicsmagick zeromq protobuf yasm pkg-config
+
+3.配置WebDriverAgent,clone代码https://github.com/mrx1203/WebDriverAgent.git，假设代码存放路径为/Users/test/Desktop/WebDriverAgent/
+
+4.启动ios-provider，因为ios-provider需要使用xcodebuild等mac下的命令行工具，而docker容器中并没有提供这类工具，
+  所以不能用docker来部署ios-provider，只能通过源码方式部署。部署步骤如下：
+（1）拉取源代码git clone https://github.com/mrx1203/stf.git
+（2）安装依赖库npm install，注意：需切换到stf目录下
+（3）启动ios-provider，假设主服务器的ip地址为172.28.28.36，该节点的ip地址为172.28.28.49
+  stf ios-provider --name "mac081" --connect-sub tcp://172.28.28.36:7250 \
+    --connect-push tcp://172.28.28.36:7270 --storage-url http://172.28.28.36 \
+    --public-ip 172.28.28.49 --min-port=15000 --max-port=25000 --heartbeat-interval 20000 \
+    --wda-path /Users/test/Desktop/WebDriverAgent/ --wda-port 8100
