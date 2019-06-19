@@ -22,3 +22,8 @@
     --connect-push tcp://172.28.28.36:7270 --storage-url http://172.28.28.36 \
     --public-ip 172.28.28.49 --min-port=15000 --max-port=25000 --heartbeat-interval 20000 \
     --wda-path /Users/test/Desktop/WebDriverAgent/ --wda-port 8100
+    
+    
+    
+ 前端做了改造，样式还没调，有点丑。
+ 前端加了控件查看器，使用了app-inspector的代码https://github.com/macacajs/app-inspector。
