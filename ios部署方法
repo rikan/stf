@@ -27,3 +27,10 @@
     
  前端做了改造，样式还没调，有点丑。
  前端加了控件查看器，使用了app-inspector的代码https://github.com/macacajs/app-inspector。
+
+ 如果不想用这里的前端，只想接入iOS，那么只需要拷贝以下文件即可：
+  1.拷贝lib/cli下的ios-device,ios-provider,local三个文件夹，local文件夹可以直接覆盖。
+  2.拷贝lib/units下的ios-device,ios-provider，覆盖lib/units/storage/plugins/apk/task/manifest.js文件。
+  3.拷贝lib/util下的ipareader.js和download.js文件；ipa文件解析和下载
+  4.拷贝res/app/components/stf/install/install-service.js文件；ipa文件的安装
+  5.拷贝res/app/components/stf/storage/storage-service.js文件；上传ipa文件
