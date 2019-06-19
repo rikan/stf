@@ -16,7 +16,7 @@
 4.启动ios-provider，因为ios-provider需要使用xcodebuild等mac下的命令行工具，而docker容器中并没有提供这类工具，
   所以不能用docker来部署ios-provider，只能通过源码方式部署。部署步骤如下：
 （1）拉取源代码git clone https://github.com/mrx1203/stf.git
-（2）安装依赖库npm install，注意：需切换到stf目录下
+（2）安装依赖库npm install；npm install --save request；npm install --save request-promise，注意：需切换到stf目录下
 （3）启动ios-provider，假设主服务器的ip地址为172.28.28.36，该节点的ip地址为172.28.28.49
   stf ios-provider --name "mac081" --connect-sub tcp://172.28.28.36:7250 \
     --connect-push tcp://172.28.28.36:7270 --storage-url http://172.28.28.36 \
