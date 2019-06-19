@@ -20,7 +20,7 @@
 （3）启动ios-provider，假设主服务器的ip地址为172.28.28.36，该节点的ip地址为172.28.28.49
   stf ios-provider --name "mac081" --connect-sub tcp://172.28.28.36:7250 \
     --connect-push tcp://172.28.28.36:7270 --storage-url http://172.28.28.36 \
-    --public-ip 172.28.28.49 --min-port=15000 --max-port=25000 --heartbeat-interval 20000 \
+    --public-ip 172.28.28.49 --heartbeat-interval 20000 \
     --wda-path /Users/test/Desktop/WebDriverAgent/ --wda-port 8100
     
     
