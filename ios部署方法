@@ -8,6 +8,7 @@
     brew install --HEAD libimobiledevice
     brew install --HEAD libideviceinstaller
     brew install carthage
+    brew install socat
 
 2.安装stf依赖：brew install graphicsmagick zeromq protobuf yasm pkg-config
 
@@ -34,3 +35,5 @@
   3.拷贝lib/util下的ipareader.js和download.js文件；ipa文件解析和下载
   4.拷贝res/app/components/stf/install/install-service.js文件；ipa文件的安装
   5.拷贝res/app/components/stf/storage/storage-service.js文件；上传ipa文件
+  6.拷贝lib/wire/wire.proto文件；加了消息
+  7.拷贝package.json，添加了依赖模块
