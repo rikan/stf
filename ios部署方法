@@ -6,7 +6,7 @@
     brew unlink usbmuxd
     brew link usbmuxd
     brew install --HEAD libimobiledevice
-    brew install --HEAD libideviceinstaller
+    brew install --HEAD ideviceinstaller
     brew install carthage
     brew install socat
 
