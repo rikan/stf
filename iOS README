@@ -20,7 +20,7 @@ this path will pass to the ios-provider with --wda-pat
     --public-ip y.y.y.y --heartbeat-interval 20000 \
     --wda-path wda_save_path/WebDriverAgent/ --wda-port 8100
     
- if you just want to integrated iOS，you can do follow steps：
+ if you just want to supported iOS，you can do follow steps：
   1.on lib/cli, copy folder ios-device,ios-provider,local，overwrite local folder。
   2.on lib/units, copy folder ios-device and ios-provider，and overwrite file lib/units/storage/plugins/apk/task/manifest.js。
   3.on lib/util,copy ipareader.js and download.js，overwrite it
