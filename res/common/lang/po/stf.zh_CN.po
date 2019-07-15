@@ -182,7 +182,11 @@ msgstr "繁忙"
 
 #: app/device-list/stats/device-list-stats.html:1
 msgid "Busy Devices"
-msgstr "繁忙的设备"
+msgstr "使用中的设备"
+
+#: app/device-list/stats/device-list-stats.html:1
+msgid "Using Devices"
+msgstr "使用中的设备"
 
 #: app/control-panes/advanced/input/input.html:1
 msgid "Camera"

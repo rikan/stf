@@ -76,9 +76,6 @@ img.device-icon-smallest {
   border-bottom: 1px solid; /* leaving out the color inherits text color */
 }
 
-.stf-device-list .device-note {
-}
-
 .stf-device-list .device-note-edit {
   margin-left: 15px;
   visibility: hidden;
@@ -90,7 +87,7 @@ img.device-icon-smallest {
 
 
 .panel-title{
-  fonet-size: 14px;
+  font-size: 14px;
   font-weight: bold;
   color: #333333;
 }
@@ -115,15 +112,35 @@ img.device-icon-smallest {
 
 .options-item{
   float:left;
-  width: 120px;
+  width: 100px;
   margin-right: 10px;
   white-space: nowrap;
   text-overflow: ellipsis;
+  text-align: center;
+  font-size: 14px;
+}
+
+.options-item.current{
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  border-radius: 2px;
+  user-select: none;
+  background-color: #3293ff;
+  border-color: #3293ff;
+  color: #fff;
+}
+
+.options-item input{
+  display: none;
 }
 
 .huya-div{
-  margin-top: 20px
+  /* margin-top: 20px */
   /*float: left;*/
+  margin: 5px 10px;
+  padding: 10px;
+  background-color: white;
 }
 
 label{

@@ -214,32 +214,32 @@ module.exports = function DeviceListCtrl(
         {
           title: '品牌',
           name: 'manufacturer',
-          values: ['All']
+          values: ['所有']
         },
         {
           title: 'Android OS',
           name: 'version',
-          values: ['All']
+          values: ['所有']
         },
         {
           title: 'iOS OS',
           name: 'ios_os',
-          values: ['All']
+          values: ['所有']
         },
         {
           title: '分辨率',
           name: 'display',
-          values: ['All']
+          values: ['所有']
         },
         {
           title: '状态',
           name: 'state',
-          values: ['All', 'Available', 'Unavailable']
+          values: ['所有', 'Available', 'Unavailable']
         },
         {
           title: '系统',
           name: 'platform',
-          values: ['All', 'Android', 'iOS']
+          values: ['所有', 'Android', 'iOS']
         }
       ]
 
@@ -301,19 +301,19 @@ module.exports = function DeviceListCtrl(
 
     for(var i = 0; i < $scope.filter.length; i++) {
       if($scope.filter[i].field === lowname) {
-        if(lowvalue === 'all') {
+        if(lowvalue === '所有') {
           $scope.filter.splice(i, 1)
         }else {
           $scope.filter[i].query = lowvalue
         }
 
-        // $log.log('filter:' + angular.toJson($scope.filter))
+        console.log($scope.filter)
         return
       }
     }
 
     //最开始filter为空，且选择'all'时
-    if(lowvalue === 'all') {
+    if(lowvalue === '所有') {
       return
     }
     var object = {

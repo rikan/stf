@@ -14,8 +14,9 @@
           span(ng-if='!$root.basicMode', translate) Settings
 
     ul.pull-right
-      p.stf-yy-feedback 意见反馈YY群：15261434
-      a.stf-git-feedback(href="https://git.huya.com/autotest/stf/issues") Report issues
+      p.stf-git-feedback
+        span.greet 你好
+        span.text(ng-bind='currentUser.name') 
 
 
     ul.nav.stf-nav.stf-feedback.pull-right(ng-cloak, nav-menu='current').unselectable

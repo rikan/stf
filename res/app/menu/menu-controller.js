@@ -1,4 +1,4 @@
-module.exports = function MenuCtrl($scope, $rootScope, SettingsService,
+module.exports = function MenuCtrl($scope, $rootScope, SettingsService, UserService,
   $location) {
 
   SettingsService.bind($scope, {
@@ -13,5 +13,7 @@ module.exports = function MenuCtrl($scope, $rootScope, SettingsService,
   $scope.$on('$routeChangeSuccess', function() {
     $scope.isControlRoute = $location.path().search('/control') !== -1
   })
+
+  $scope.currentUser = UserService.currentUser
 
 }
