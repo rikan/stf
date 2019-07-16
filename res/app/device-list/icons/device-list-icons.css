@@ -2,7 +2,7 @@ ul.devices-icon-view {
   margin: 0;
   display: inline-block;
   list-style-type: none;
-  font-family: 'HelveticaNeue-UltraLight', Helvetica, Arial, sans-serif;
+  /* font-family: 'HelveticaNeue-UltraLight', Helvetica, Arial, sans-serif; */
 }
 
 ul.devices-icon-view li {
@@ -138,11 +138,14 @@ ul.devices-icon-view .device-name.state-available {
   padding-bottom: 20px
 }
 
+.device-item-huya dd{
+  margin-left: 80px;
+}
+
 dl{
   margin-top: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  font-family: Serif;
   font-size: 15px;
 }
 

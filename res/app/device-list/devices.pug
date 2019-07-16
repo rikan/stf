@@ -10,8 +10,8 @@ div.huya-div
     dd.huya
       //a.more.huya-close(href='javascript:;' ng-click='more($event,filter.title)' ) 更多
       div.filter-options
-        span.options-item(ng-repeat="value in filter.values" ng-class="{current: value === '所有'}")
-          input(type="radio"  name="{{filter.name}}" id="{{value}}"+"_"+"{{filter.title}}" ng-checked="(value === '所有')" value="{{value}}" ng-click='applyFilter(filter.name, value)' )
+        span.options-item(ng-repeat="value in filter.values" ng-class="{current: value === filterMap[filter.name]}")
+          input(type="radio"  name="{{filter.name}}" id="{{value}}"+"_"+"{{filter.title}}" ng-checked="(value === '全部')" value="{{value}}" ng-click='applyFilter(filter.name, value)' )
           label(for="{{value}}"+"_"+"{{filter.title}}") {{value}}
 div.huya-div
   device-list-icons(tracker='tracker', columns='columns', sort='sort', filter='filter')

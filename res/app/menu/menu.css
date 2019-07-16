@@ -59,10 +59,12 @@
 
 .stf-menu .stf-nav > li > a.current {
   color: #ffffff;
+  background-color: #1b2839;
 }
 
 .stf-menu .stf-nav > li > a:hover {
   background-color: #1b2839;
+  opacity: 0.8;
 }
 
 .stf-menu.navbar {

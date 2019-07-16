@@ -95,9 +95,13 @@ img.device-icon-smallest {
 .options{
   display: block;
   height: fit-content;
-  /*float:left;*/
   overflow: hidden;
+  padding: 5px;
 }
+.options:nth-child(odd) {
+  background-color: #f6f8fa;
+}
+
 .more{
   float: right;
 }
@@ -113,11 +117,15 @@ img.device-icon-smallest {
 .options-item{
   float:left;
   width: 100px;
-  margin-right: 10px;
   white-space: nowrap;
   text-overflow: ellipsis;
   text-align: center;
   font-size: 14px;
+  cursor: pointer;
+}
+
+.options-item:hover{
+  cursor: pointer;
 }
 
 .options-item.current{
@@ -145,6 +153,7 @@ img.device-icon-smallest {
 
 label{
   margin-left: 2px;
+  margin-bottom: 0;
 }
 
 

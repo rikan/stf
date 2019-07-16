@@ -214,32 +214,32 @@ module.exports = function DeviceListCtrl(
         {
           title: '品牌',
           name: 'manufacturer',
-          values: ['所有']
+          values: ['全部']
         },
         {
           title: 'Android OS',
           name: 'version',
-          values: ['所有']
+          values: ['全部']
         },
         {
           title: 'iOS OS',
           name: 'ios_os',
-          values: ['所有']
+          values: ['全部']
         },
         {
           title: '分辨率',
           name: 'display',
-          values: ['所有']
+          values: ['全部']
         },
         {
           title: '状态',
           name: 'state',
-          values: ['所有', 'Available', 'Unavailable']
+          values: ['全部', 'Available', 'Unavailable']
         },
         {
           title: '系统',
           name: 'platform',
-          values: ['所有', 'Android', 'iOS']
+          values: ['全部', 'Android', 'iOS']
         }
       ]
 
@@ -291,29 +291,32 @@ module.exports = function DeviceListCtrl(
   }
 
   $scope.initfilters().then(function(filters) {
+    $scope.filterMap = {}
+    for(var i=0; i<filters.length; i++){
+      $scope.filterMap[filters[i].name] = "全部";
+    }
     return $scope.defaultfilters = filters
   })
 
   $scope.applyFilter = function(name, value) {
-
     var lowname = angular.lowercase(name)
     var lowvalue = angular.lowercase(value)
 
     for(var i = 0; i < $scope.filter.length; i++) {
       if($scope.filter[i].field === lowname) {
-        if(lowvalue === '所有') {
+        if(lowvalue === '全部') {
           $scope.filter.splice(i, 1)
+          $scope.filterMap[name] = '全部'
         }else {
           $scope.filter[i].query = lowvalue
+          $scope.filterMap[name] = value
         }
-
-        console.log($scope.filter)
         return
       }
     }
 
     //最开始filter为空，且选择'all'时
-    if(lowvalue === '所有') {
+    if(lowvalue === '全部') {
       return
     }
     var object = {
@@ -324,6 +327,7 @@ module.exports = function DeviceListCtrl(
 
     // $log.log('new_filter: ' + angular.toJson(object))
     $scope.filter.push(object)
+    $scope.filterMap[name] = value
 
   }
 
