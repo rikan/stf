@@ -16,7 +16,8 @@
     ul.pull-right
       p.stf-git-feedback
         span.greet 你好
-        span.text(ng-bind='currentUser.name') 
+        span.text(ng-bind='currentUser.displayName') 
+      a.btn.logout(ng-click='logout()') 登出
 
 
     ul.nav.stf-nav.stf-feedback.pull-right(ng-cloak, nav-menu='current').unselectable

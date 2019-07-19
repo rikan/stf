@@ -72,7 +72,7 @@
   min-height: 44px !important;
   background-color: #131e2a;
   color: #ffffff;
-  font-family: '微软雅黑'
+  font-family: "Helvetica Neue", Helvetica, "微软雅黑", sans-serif;
 }
 
 .stf-yy-feedback  {
@@ -92,4 +92,12 @@
 
 .stf-git-feedback .greet{
   margin-right: 10px;
+}
+
+.logout{
+  line-height: 30px;
+  height: 30px;
+}
+.logout:hover{
+  color: #ffffff;
 }

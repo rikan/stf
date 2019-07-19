@@ -132,6 +132,10 @@ ul.devices-icon-view .device-name.state-available {
   font-size: 14px;
   font-weight: bold;
   color: #333333;
+  text-overflow: ellipsis;
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .device-item-huya dl{

@@ -111,7 +111,7 @@ module.exports = function DeviceListIconsDirective(
         status.nodeValue = $filter('statusHuya')(device.state)
 
         if(device.owner && device.state !== 'automation' && device.present === true) {
-         status.nodeValue = status.nodeValue + ' by ' + device.owner.name
+         status.nodeValue = status.nodeValue + ' by ' + device.owner.displayName
         }
 
         var remind = top.firstChild.nextSibling.firstChild.firstChild
@@ -641,6 +641,7 @@ module.exports = function DeviceListIconsDirective(
 
       // Triggers when the tracker sees a device for the first time.
       function addListener(device) {
+        // debugger;
         var item = createItem(device)
         filterItem(item, device)
         insertItem(item, device)
