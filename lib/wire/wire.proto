@@ -262,6 +262,7 @@ message OwnerMessage {
   required string email = 1;
   required string name = 2;
   required string group = 3;
+  required string displayName = 4;
 }
 
 message GroupMessage {

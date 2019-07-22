@@ -14,8 +14,9 @@
       .icon.fa.fa-users.visitors
       span(class='counter', data-type='busy') 0
     .text(translate) Busy Devices
-  .col-xs-3
+  .col-xs-3.hide
     .number.color-orange
       .icon.fa.fa-user.visitors(ng-class='{"fa-trophy": $root.adminMode, "fa-user": !$root.adminMode}')
       span(class='counter', data-type='using') 0
     .text(translate) Using Devices
+  

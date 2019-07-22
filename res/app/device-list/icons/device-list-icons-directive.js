@@ -111,7 +111,7 @@ module.exports = function DeviceListIconsDirective(
         status.nodeValue = $filter('statusHuya')(device.state)
 
         if(device.owner && device.state !== 'automation' && device.present === true) {
-         status.nodeValue = status.nodeValue + ' by ' + device.owner.displayName
+         status.nodeValue = device.owner.displayName + ' 正在使用'
         }
 
         var remind = top.firstChild.nextSibling.firstChild.firstChild

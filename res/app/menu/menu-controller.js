@@ -19,8 +19,10 @@ module.exports = function MenuCtrl($scope, $rootScope, SettingsService, UserServ
   $scope.logout = function() {
     $http({
       method: "GET",
-      url: '/logout',
+      url: '/auth/api/v1/logout',
       timeout: 10000
+    }).success(function(){
+      location.reload();
     });
   }
 }
