@@ -12,7 +12,7 @@ module.exports = function DeviceControlCtrl($scope, $log, DeviceService, GroupSe
   $scope.kickDevice = function(device) {
 
     if (!device || !$scope.device) {
-      alert('No device found')
+      $location.path('/devices/')
       return
     }
 

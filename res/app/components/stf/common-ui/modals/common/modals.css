@@ -68,5 +68,6 @@
   font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif;
 }
 
-.stf-modal .device-photo-small {
+.stf-modal .device-photo-small img {
+  width: 165px;
 }
