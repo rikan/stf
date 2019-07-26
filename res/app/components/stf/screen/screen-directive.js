@@ -782,7 +782,7 @@ module.exports = function DeviceScreenDirective(
 
         function startMousing() {
           control.gestureStart(nextSeq())
-          input[0].focus()
+          // input[0].focus()
         }
 
         function stopMousing() {

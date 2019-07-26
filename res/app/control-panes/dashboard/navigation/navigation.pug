@@ -11,6 +11,9 @@
       //i.fa.fa-refresh.pull-right(ng-click='refresh()', title='{{"Reload"|translate}}')
       //i.fa.fa-step-forward.pull-right(ng-click='forward()', title='{{"Go Forward"|translate}}')
       //i.fa.fa-step-backward.pull-right(ng-click='back()', title='{{"Go Back"|translate}}')
+  .btn-group.btn-group-sm.quick-bts
+    button(type='button', ng-click='openURL("http://99.48.212.121:8888/")').btn.btn-primary 测试地址
+    button(type='button', ng-click='openURL("http://99.48.243.4/dl/#/android")').btn.btn-primary 下载地址
   .widget-content.padded
     form(enable-autofill, ng-submit='openUrl()')
       .input-group.url-input-container

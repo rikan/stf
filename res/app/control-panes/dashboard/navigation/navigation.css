@@ -30,3 +30,13 @@
   min-width: 44px;
   min-height: 35px;
 }
+
+.quick-bts{
+  margin-left: 15px;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.quick-bts .btn{
+  margin-left: 1px;
+}

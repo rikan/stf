@@ -33,9 +33,12 @@ module.exports = function NavigationCtrl($scope, $rootScope) {
 
   $scope.blurUrl = false
 
-  $scope.openURL = function() {
+  $scope.openURL = function(uri) {
     $scope.blurUrl = true
     $rootScope.screenFocus = true
+    if(uri){
+      $scope.textURL = uri
+    }
 
     var url = addHttp($scope.textURL)
     setUrlFavicon(url)
