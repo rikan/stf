@@ -109,6 +109,12 @@ module.exports = function DeviceListIconsDirective(
         var top = li.firstChild
         var status = top.firstChild.firstChild
         status.nodeValue = $filter('statusHuya')(device.state)
+        for(var i=0; i<top.firstChild.classList.length; i++){
+          if(top.firstChild.classList[i].indexOf('status-') === 0){
+            top.firstChild.classList.remove(top.firstChild.classList[i])
+          }
+        }
+        top.firstChild.classList.add('status-' + device.state)
 
         if(device.owner && device.state !== 'automation' && device.present === true) {
          status.nodeValue = device.owner.displayName + ' 正在使用'
@@ -121,11 +127,11 @@ module.exports = function DeviceListIconsDirective(
         //判断设备是否可用
         if (device.usable) {
           a.href = '#!/control/' + device.serial
-          a.firstChild.classList.remove('device-is-busy')
+          a.firstChild.classList.remove('hide')
         }
         else {
           a.removeAttribute('href')
-          a.firstChild.classList.add('device-is-busy')
+          a.firstChild.classList.add('hide')
         }
 
         var name = top.nextSibling

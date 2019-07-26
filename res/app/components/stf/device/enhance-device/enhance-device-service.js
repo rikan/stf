@@ -50,8 +50,9 @@ module.exports = function EnhanceDeviceServiceFactory($filter, $log, $http, AppS
     device.enhancedName = device.marketName || device.model || device.serial || 'Unknown'
     // device.enhancedName = device.manufacturer || 'Unkonwn'
     device.enhancedModel = device.model || 'Unknown'
-    device.enhancedImage120 = '/static/app/devices/icon/x120/' + (device.image || '_default.jpg')
-    device.enhancedImage24 = '/static/app/devices/icon/x24/' + (device.image || '_default.jpg')
+    console.log('---------', device)
+    device.enhancedImage120 = '/static/app/devices/icon/x120/' + ((device.model ? device.model + '.jpg' : null) || '_default.jpg')
+    device.enhancedImage24 = '/static/app/devices/icon/x24/' + ((device.model ? device.model + '.jpg' : null) || '_default.jpg')
     device.enhancedStateAction = $filter('statusNameAction')(device.state)
     device.enhancedStatePassive = $filter('statusNamePassive')(device.state)
     device.enhancedImg = device.enhancedImage120

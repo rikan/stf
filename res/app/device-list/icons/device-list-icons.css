@@ -110,6 +110,14 @@ ul.devices-icon-view .device-name.state-available {
   float: left;
 }
 
+.device-top-huya .device-status-huya.status-absent{
+  color: red;
+}
+
+.device-top-huya .device-status-huya.status-available, .device-top-huya .device-status-huya.status-using{
+  color: green;
+}
+
 .pull-right-huya{
   width: fit-content;
   height: 26px;
@@ -139,11 +147,12 @@ ul.devices-icon-view .device-name.state-available {
 }
 
 .device-item-huya dl{
-  padding-bottom: 20px
+  padding-bottom: 20px;
+  position: relative;
 }
 
 .device-item-huya dd{
-  margin-left: 80px;
+  margin-left: 95px;
 }
 
 dl{
@@ -187,7 +196,9 @@ p{
 }
 
 .huya_ico {
-  width: 61px;
-  height: 120px;
+  width: 130px;
+  top: 0px;
+  position: absolute;
+  left: -4px;
 }
 

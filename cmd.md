@@ -1,0 +1,3 @@
+1. stf local --wda-path  /Users/Joying/test/WebDriverAgent/ --public-ip 99.48.212.156  --allow-remote --auth-type ldap --auth-options '["--ldap-url","ldap://99.48.212.50", "--ldap-bind-dn","cn=admin,dc=joying,dc=com","--ldap-search-dn","DC=joying,DC=com", "--ldap-bind-credentials","Joying@2019", "--ldap-search-field", "uid"]'
+
+2. stf local --wda-path  /Users/Joying/test/WebDriverAgent/ --public-ip 172.10.110.252  --allow-remote --auth-type ldap --auth-options '["--ldap-url","ldap://99.48.212.50", "--ldap-bind-dn","cn=admin,dc=joying,dc=com","--ldap-search-dn","DC=joying,DC=com", "--ldap-bind-credentials","Joying@2019", "--ldap-search-field", "uid"]'

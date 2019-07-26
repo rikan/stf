@@ -10,12 +10,12 @@ module.exports =
         templateUrl: 'control-panes/screenshots/screenshots.pug',
         filters: ['native', 'web']
       },
-      {
-        title: gettext('Automation'),
-        icon: 'fa-road color-lila',
-        templateUrl: 'control-panes/automation/automation.pug',
-        filters: ['native', 'web']
-      },
+      // {
+      //   title: gettext('Automation'),
+      //   icon: 'fa-road color-lila',
+      //   templateUrl: 'control-panes/automation/automation.pug',
+      //   filters: ['native', 'web']
+      // },
       {
         title: gettext('Advanced'),
         icon: 'fa-bolt color-brown',
@@ -32,12 +32,6 @@ module.exports =
         title: gettext('Info'),
         icon: 'fa-info color-orange',
         templateUrl: 'control-panes/info/info.pug',
-        filters: ['native', 'web']
-      },
-      {
-        title: gettext('Inspector'),
-        icon: 'fa-info color-blue',
-        templateUrl: 'control-panes/inspect/inspect.pug',
         filters: ['native', 'web']
       }
     ]
