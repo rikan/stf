@@ -1,0 +1,7 @@
+.dashboard .widget-container.fluid-height {
+  min-height: 200px;
+}
+
+.tab-content {
+  margin-top: 5px;
+}

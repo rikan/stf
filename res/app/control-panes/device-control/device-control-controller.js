@@ -133,7 +133,7 @@ module.exports = function DeviceControlCtrl($scope, $log, DeviceService, GroupSe
     }
   }
 
-  $scope.quality = '60'
+  $scope.quality = '80'
   $scope.rate = $scope.quality
   $scope.test = function() {
     // $log.log('调整画质为：' + $scope.quality)

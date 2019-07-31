@@ -128,7 +128,6 @@ module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceServi
 
     function changeListener(event) {
       var device = get(event.data)
-      console.log(device)
       if (device) {
         modify(device, event.data)
         if (!options.filter(device)) {

@@ -167,6 +167,7 @@ device-screen input {
 }
 
 .stf-device-control .dropdown-menu {
+  width: 200px;
   top: auto;
 }
 

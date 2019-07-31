@@ -89,12 +89,12 @@ module.exports =
                 templateUrl: 'control-panes/info/info.pug',
                 filters: ['native', 'web']
               },
-              {
-                title: gettext('Inspector'),
-                icon: 'fa-info color-blue',
-                templateUrl: 'control-panes/inspect/inspect.pug',
-                filters: ['native', 'web']
-              }
+              // {
+              //   title: gettext('Inspector'),
+              //   icon: 'fa-info color-blue',
+              //   templateUrl: 'control-panes/inspect/inspect.pug',
+              //   filters: ['native', 'web']
+              // }
             ]
           }
 

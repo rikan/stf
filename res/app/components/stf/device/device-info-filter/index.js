@@ -45,12 +45,12 @@ module.exports = angular.module('stf.device-status', [])
  .filter('likelyLeaveReason', function(gettext) {
     return function(text) {
       return {
-        ungroup_request: gettext('You (or someone else) kicked the device.'),
-        owner_change: gettext('Someone stole your device.'),
-        automatic_timeout: gettext('Device was kicked by automatic timeout.	'),
-        device_absent: gettext('Device is not present anymore for some reason.'),
-        status_change: gettext('Device is present but offline.')
-      }[text] || gettext('Unknown reason.')
+        ungroup_request: '你 (或別人) 已移出了该设备。',
+        owner_change: '有人占用了你的设备。',
+        automatic_timeout: '设备由于超时已被移出。',
+        device_absent: '设备由于某些原因找不到。',
+        status_change: '设备已找到但处于离线状态。'
+      }[text] || '未知的原因。'
     }
   })
   .filter('batteryHealth', function(gettext) {

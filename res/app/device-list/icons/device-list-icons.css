@@ -110,7 +110,7 @@ ul.devices-icon-view .device-name.state-available {
   float: left;
 }
 
-.device-top-huya .device-status-huya.status-absent{
+.device-top-huya .device-status-huya.status-absent, .device-top-huya .device-status-huya.status-offline{
   color: red;
 }
 
