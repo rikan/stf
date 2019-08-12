@@ -13,7 +13,6 @@ module.exports = function MenuCtrl($scope, $rootScope, SettingsService, UserServ
   $scope.$on('$routeChangeSuccess', function() {
     $scope.isControlRoute = $location.path().search('/control') !== -1
   })
-  console.log(`UserService.currentUser:${JSON.stringify(UserService.currentUser)}`)
   $scope.currentUser = UserService.currentUser
 
   $scope.logout = function() {

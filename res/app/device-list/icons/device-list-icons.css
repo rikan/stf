@@ -17,6 +17,8 @@ ul.devices-icon-view li {
   clear: none;
   margin: 6px;
   text-align: center;
+  height: 260px;
+  overflow: hidden;
 }
 
 ul.devices-icon-view li:active {
