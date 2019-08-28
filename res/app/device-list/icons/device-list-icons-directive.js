@@ -94,12 +94,9 @@ module.exports = function DeviceListIconsDirective(
         os.appendChild(document.createTextNode('系统: Unknown'))
         var screen = document.createElement('p')
         screen.appendChild(document.createTextNode('分辨率: Unknown'))
-        var provider = document.createElement('p')
-        provider.appendChild(document.createTextNode('位置： 无'))
         info.appendChild(manufacturer)
         info.appendChild(os)
         info.appendChild(screen)
-        info.appendChild(provider)
         return li
       }
 
@@ -160,11 +157,6 @@ module.exports = function DeviceListIconsDirective(
         var screen = os.nextSibling
         if(device.display) {
           screen.firstChild.nodeValue = '分辨率：' + device.display.width + '*' + device.display.height
-        }
-
-        if(device.provider) {
-          var provider = screen.nextSibling
-          provider.firstChild.nodeValue = '位置：' + device.provider.name
         }
 
         return li
