@@ -1,16 +1,16 @@
-.row.dashboard
+.row.dashboard(ng-if="device.platform !== 'iOS'")
   .col-md-6
     div(ng-include='"control-panes/dashboard/navigation/navigation.pug"')
   .col-md-6
     div(ng-include='"control-panes/dashboard/clipboard/clipboard.pug"')
 
-.row.dashboard
+.row.dashboard(ng-if="device.platform !== 'iOS'")
   .col-md-6
     div(ng-include='"control-panes/dashboard/apps/apps.pug"')
   .col-md-6
     div(ng-include='"control-panes/dashboard/install/install.pug"')
-  //- .col-md-6(ng-if='$root.platform == "native"')
-  //-   div(ng-include='"control-panes/dashboard/shell/shell.pug"')
-//- .row
-//- .col-md-6
-//-   div(ng-include='"control-panes/advanced/remote-debug/remote-debug.pug"')
+.row.dashboard(ng-if="device.platform === 'iOS'")
+  .col-md-12
+    div(style="color: red") 由于IOS限制, 部分功能无法使用。 当需要登录时候IOS中无法使用手势登录，请点击登录页面右下角 "切换登录", "切换登录方式" 使用密码登录。
+    div  
+      img(src="/static/app/devices/photo/login.jpg", style="height: 400px; width: 225px")

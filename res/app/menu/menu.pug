@@ -17,14 +17,14 @@
       p.stf-git-feedback
         span.greet 你好
         span.text(ng-bind='currentUser.displayName') 
-      a.btn.logout(ng-click='logout()') 登出
+      //- a.btn.logout(ng-click='logout()') 登出
 
 
     ul.nav.stf-nav.stf-feedback.pull-right(ng-cloak, nav-menu='current').unselectable
-      li.stf-nav-web-native-button(ng-if='!$root.basicMode && isControlRoute')
-        .btn-group
-          button(type='button', ng-model='$root.platform', uib-btn-radio="'web'", translate).btn.btn-sm.btn-default-outline Web
-          button(type='button', ng-model='$root.platform', uib-btn-radio="'native'", translate).btn.btn-sm.btn-default-outline Native
+      //- li.stf-nav-web-native-button(ng-if='!$root.basicMode && isControlRoute')
+      //-   .btn-group
+      //-     button(type='button', ng-model='$root.platform', uib-btn-radio="'web'", translate).btn.btn-sm.btn-default-outline Web
+      //-     button(type='button', ng-model='$root.platform', uib-btn-radio="'native'", translate).btn.btn-sm.btn-default-outline Native
 
       //li(ng-show='!$root.basicMode')
       //  a(ng-href='/#!/help', accesskey='6')
