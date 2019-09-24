@@ -3,6 +3,10 @@ module.exports = function SignInCtrl($scope, $http) {
   $scope.error = null
 
   $scope.submit = function () {
+    if(true){
+      alert('请使用OA平台登陆')
+      return;
+    }
     var data = {
       username: $scope.signin.username.$modelValue,
       password: $scope.signin.password.$modelValue,
