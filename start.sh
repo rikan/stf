@@ -1,0 +1,1 @@
+./stf local --wda-path /Users/Joying/JTF/WebDriverAgent/ --public-ip 99.48.212.156 --allow-remote --auth-type ldap --auth-options '["--ldap-url","ldap://99.48.208.51", "--ldap-bind-dn","cn=admin,dc=joying,dc=com","--ldap-search-dn","DC=joying,DC=com", "--ldap-bind-credentials","Joying@2019", "--ldap-search-field", "uid"]'
